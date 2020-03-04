@@ -34,11 +34,13 @@ public class NotificationListener  extends NotificationListenerService {
     private void mute()
     {
         setVolume(0);
+        muted = true;
     }
 
     private void unmute()
     {
-        setVolume(0);
+        setVolume(oldVolume);
+        muted = false;
     }
 
 
@@ -49,10 +51,16 @@ public class NotificationListener  extends NotificationListenerService {
         if(!sbn.getPackageName().equalsIgnoreCase("com.spotify.music"))
             return;
         Log.i(TAG,"ID :" + sbn.getId() + "\t" + sbn.getNotification().tickerText + "\t" + sbn.getPackageName());
-        if(!sbn.getNotification().tickerText.toString().contains("Adver"))
+        if(sbn.getNotification().tickerText.toString().contains("I Love"))
         {
+            if(muted)
+                return;
             mute();
+            return;
         }
+
+        if(muted)
+            unmute();
 
     }
 
