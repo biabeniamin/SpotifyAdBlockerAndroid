@@ -23,14 +23,24 @@ public class NotificationListener  extends NotificationListenerService {
         super.onDestroy();
     }
 
-    private void mute()
+    private void setVolume(int set_volume)
     {
         AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
         oldVolume =mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        int set_volume=0;
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,set_volume, 0);
     }
+
+    private void mute()
+    {
+        setVolume(0);
+    }
+
+    private void unmute()
+    {
+        setVolume(0);
+    }
+
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
