@@ -48,6 +48,12 @@ public class NotificationListener  extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn) {
 
         Log.i(TAG,"**********  onNotificationPosted");
+        Log.i(TAG,"**********  onNotificationPosted "+sbn.getPackageName());
+        if(sbn ==null)
+            return;
+        if(sbn.getNotification() ==null)
+            return;
+        Log.i(TAG,"**********  passed");
         if(!sbn.getPackageName().equalsIgnoreCase("com.spotify.music"))
             return;
         Log.i(TAG,"ID :" + sbn.getId() + "\t" + sbn.getNotification().tickerText + "\t" + sbn.getPackageName());
