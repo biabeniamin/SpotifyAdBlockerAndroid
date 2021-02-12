@@ -57,6 +57,8 @@ public class NotificationListener  extends NotificationListenerService {
         if(!sbn.getPackageName().equalsIgnoreCase("com.spotify.music"))
             return;
         Log.i(TAG,"ID :" + sbn.getId() + "\t" + sbn.getNotification().tickerText + "\t" + sbn.getPackageName());
+        if(sbn.getNotification().tickerText == null)
+            return;
         if(sbn.getNotification().tickerText.toString().contains("Advertisement"))
         {
             if(muted)
